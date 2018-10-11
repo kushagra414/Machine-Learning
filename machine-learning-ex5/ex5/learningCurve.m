@@ -20,6 +20,15 @@ m = size(X, 1);
 % You need to return these values correctly
 error_train = zeros(m, 1);
 error_val   = zeros(m, 1);
+J_train = zeros(m,1);
+J_val = zeros(m,1);
+for i =1:m
+    [theta] = trainLinearReg(X(1:i, :), y(1:i), lambda);
+    [J_train(i)] = linearRegCostFunction(X(1:i, :), y(1:i), theta, 0);
+	[J_val(i)] = linearRegCostFunction(Xval, yval, theta, 0);
+end
+error_train = J_train;
+error_val = J_val;
 
 % ====================== YOUR CODE HERE ======================
 % Instructions: Fill in this function to return training errors in 
